@@ -1,4 +1,5 @@
 import pygame
+import os
 from scripts.app import App
 
 def main():
