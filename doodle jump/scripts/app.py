@@ -27,8 +27,8 @@ class App():
         pass
     
     def run(self):
-        while self.running == True:
+        while self.running:
             self.handle_events()
             self.render()
             self.update()
-    
+            self.clock.tick(60)
