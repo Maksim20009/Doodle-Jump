@@ -3,7 +3,7 @@ import pygame
 from scripts.functions import load_image
 
 class Sprite():
-    
+
     def __init__(self, image, coords):
         self.image = image
         self.rect = image.get_frect()
