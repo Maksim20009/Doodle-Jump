@@ -37,4 +37,4 @@ class App():
             self.handle_events()
             self.render()
             self.update()
-    
+            self.clock.tick(self.MaxFPS)
