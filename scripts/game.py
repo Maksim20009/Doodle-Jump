@@ -15,8 +15,8 @@ class Game():
         ]
         
         self.player = Player(
-            (100, 100),
             load_image('assets', 'images', 'player.png'),
+            (100, 100),
             5,
             15, 
             0.75,  
@@ -35,12 +35,15 @@ class Game():
             self.player.is_walking_right = False
         
     def update_objects(self):
+        for platform in self.platforms:
+            if self.player.collide(platform.rect):
+                self.player.on_platform = True
         self.player.update()
 
     def render_object(self, scene):
         scene.blit(self.background, (0, 0))
         for platform in self.platforms:
             platform.render(scene)
-        self.player.render(self, scene)
+        self.player.render(scene)
         
                 
