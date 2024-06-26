@@ -3,6 +3,7 @@ import os
 from scripts.functions import load_image
 from scripts.sprite import Sprite
 from scripts.player import Player
+from scripts.constants import display_size
 
 class Game():
 
@@ -17,11 +18,13 @@ class Game():
         self.player = Player(
             load_image('assets', 'images', 'player.png'),
             (100, 100),
-            5,
-            15, 
-            0.75,  
+            4,
+            22, 
+            0.65,  
         )
         
+        self.offset_y = 0
+
     def process_key_down_event(self, key):
         if key == pygame.K_a:
             self.player.is_walking_left = True
@@ -35,15 +38,20 @@ class Game():
             self.player.is_walking_right = False
         
     def update_objects(self):
+        self.player.update()
         for platform in self.platforms:
             if self.player.collide(platform.rect):
                 self.player.on_platform = True
-        self.player.update()
+        
+        if self.player.rect.bottom - self.offset_y < display_size[1] / 3:
+            self.offset_y = self.player.rect.bottom - display_size[1] / 3
 
     def render_object(self, scene):
         scene.blit(self.background, (0, 0))
         for platform in self.platforms:
-            platform.render(scene)
-        self.player.render(scene)
+            platform.render(scene, self.offset_y)
+        self.player.render(scene, self.offset_y)
+       
+
         
                 

@@ -1,9 +1,8 @@
-from scripts.constants import display_size
 import pygame
 import os
 from scripts.game import Game
 from scripts.functions import load_image
-
+from scripts.constants import display_size
 
 class App():
     def __init__(self):
